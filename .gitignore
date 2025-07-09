@@ -1,0 +1,17 @@
+/el-get
+/eln-cache
+/elpa
+/3drparty/
+/auto-save-list/
+/emojis/
+/ielm-history.eld
+/places
+/recentf
+/request/
+*~
+/.cache/
+/.dap-breakpoints
+/.lsp-session-v1
+/projectile*
+/transient/
+/url/
