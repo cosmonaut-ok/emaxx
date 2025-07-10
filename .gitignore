@@ -1,7 +1,7 @@
 /el-get
 /eln-cache
 /elpa
-/3drparty/
+/3rd-party/
 /auto-save-list/
 /emojis/
 /ielm-history.eld
@@ -15,3 +15,10 @@
 /projectile*
 /transient/
 /url/
+*.elc
+/company-statistics-cache.el
+/elpa-*/
+/emaxx-custom.el
+/tramp
+/after-init.el
+/before-init.el

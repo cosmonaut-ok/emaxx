@@ -1,3 +1,7 @@
+;;; treemacs.el --- treemacs configuration for Emaxx -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;; :custom and :init->custom-set-variables
 ;; are not applicable exactly for treemacs
 ;; for some unknown reason. Setting required variables
@@ -13,7 +17,7 @@
  '(treemacs-width-increment 4)
  '(treemacs-width-is-initially-locked nil)
  '(treemacs-workspace-switch-cleanup 'all)
- ;; '(treemacs-text-scale -1.1)
+ '(treemacs-text-scale -0.8)
  '(treemacs-show-hidden-files t)
  '(treemacs-litter-directories '("/node_modules" "/.venv" "/.cask"))
  '(treemacs-show-cursor nil)
@@ -55,7 +59,7 @@
         (setq treemacs-collapse-dirs 3)
         (treemacs-git-commit-diff-mode t))
     (setq treemacs-collapse-dirs 0))
-  
+
   (pcase (cons (not (null (executable-find "git")))
                (not (null treemacs-python-executable)))
     (`(t . t)
@@ -72,19 +76,19 @@
   ;; (dolist (w (window-list))
   ;;   (let ((buf-name (buffer-name (window-buffer w))))
   ;;     (when (or
-  ;; 	     (equal "*LSP Error List*" buf-name)
-  ;; 	     (equal "*LSP Symbols List*" buf-name))
-  ;; 	(set-window-parameter w 'no-other-window t))))
+  ;;       (equal "*LSP Error List*" buf-name)
+  ;;       (equal "*LSP Symbols List*" buf-name))
+  ;;  (set-window-parameter w 'no-other-window t))))
   )
 
 (use-package treemacs
   ;; :hook (prog-mode . treemacs)
   :after lsp
-  ;; :config
+  :config
+  (treemacs--setup-fringe-indicator-mode 'Always)
   ;; ;; The default width and height of the icons is 22 pixels. If you are
   ;; ;; using a Hi-DPI display, uncomment this to double the icon size.
   ;; (treemacs-resize-icons 16)
-
   :commands treemacs
   )
 
@@ -96,3 +100,16 @@
 (use-package lsp-treemacs
   :after (lsp treemacs)
   :commands (lsp-treemacs-symbols lsp-treemacs-errors-list))
+
+(use-package treemacs-magit
+  :ensure t
+  :after (treemacs magit))
+
+(use-package treemacs-projectile
+  :ensure t
+  ;; :defer t
+  :after (treemacs projectile)
+  :bind
+  (("C-c e" . #'treemacs)
+   ("C-c E" . #'treemacs-projectile)))
+;;; treemacs.el ends here.
