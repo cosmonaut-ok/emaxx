@@ -87,6 +87,8 @@
     json-mode                           ;+
     ;; yaml
     yaml-mode                           ;+
+    hcl-mode				;+
+    toml				;+
     ;; yasnippet
     yasnippet                           ;+
     yasnippet-snippets                  ;+
@@ -135,7 +137,6 @@
     helm-lsp                            ;+
     helm-flycheck                       ;+
     helm-bibtex                         ;- TODO: create configuration for LaTeX
-    helm-ag                             
     helm-rg
     ;; user interface (look and feel)
     ;; fill-column-indicator            ;FIXME: breaks company mode

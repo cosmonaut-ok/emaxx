@@ -116,6 +116,8 @@ Also discard .elc without corresponding .el."
 (load-user-rc-file (file-name-concat "rc" "json"))
 (load-user-rc-file (file-name-concat "rc" "yaml"))
 (load-user-rc-file (file-name-concat "rc" "xml"))
+(load-user-rc-file (file-name-concat "rc" "toml"))
+(load-user-rc-file (file-name-concat "rc" "hcl"))
 (load-user-rc-file (file-name-concat "rc" "ansible"))
 
 ;; programming language modes

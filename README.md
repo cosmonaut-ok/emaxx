@@ -34,6 +34,8 @@ This configuration created for my personal use and distributed `as is` under ter
 
 ## Installation
 
+NOTE: tested only on **Debian GNU Linux 13** distributive.
+
 1. clone this repo to `~/.emacs.d` directory
 1. run `make deps`
 2. ...
