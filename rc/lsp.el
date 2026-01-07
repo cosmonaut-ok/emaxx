@@ -1,6 +1,7 @@
 ;;; lsp.el --- lsp configuration for Emaxx -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
+
 (use-package lsp-mode
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
@@ -20,9 +21,6 @@
         ;; remember name of current buffer
         ;; to switch to it later
         (curr-buf (current-buffer)))
-
-    (lsp-treemacs-errors-list)
-    (lsp-treemacs-symbols)
 
     ;; exclude lsp-treemacs error list and symbols
     ;; from other-window command

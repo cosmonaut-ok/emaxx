@@ -69,7 +69,7 @@ Also discard .elc without corresponding .el."
 ;; very early init
 ;;
 ;; Save any custom set variable in const/custom-file rather than at the end of init.el
-(setq custom-file (locate-user-emacs-file (expand-file-name const/custom-file)))
+(setq custom-file (locate-user-emacs-file const/custom-file))
 
 ;; add directory with 3rd party packages to load-path
 (add-to-list 'load-path const/third-party-dir)
@@ -150,14 +150,4 @@ Also discard .elc without corresponding .el."
   (when (file-readable-p after-init-file-name)
     (message "Loading after-init file: %s" after-init-file-name)
     (load after-init-file-name)))
-
-(defun treemacs-start ()
-  "Another nonce menu function."
-  (interactive)
-  (dashboard-open)                      ;do it again, because hackernews are not starting first time
-  (treemacs))
-
-(tool-bar-add-item "spell" 'treemacs-start
-		               'treemacs-start
-		               :help   "Launch treemacs")
 ;;; init.el ends here.

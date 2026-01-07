@@ -34,13 +34,16 @@
  '(treemacs-expand-after-init t)
  '(treemacs-find-workspace-method 'find-for-file-or-pick-first)
 
- '(treemacs-fringe-indicator-mode t)
- '(visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+ ;; '(treemacs-fringe-indicator-mode 'always)
+ ;; '(visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
  '(treemacs-deferred-git-apply-delay 0.5)
  '(treemacs-goto-tag-strategy 'refetch-index)
  '(treemacs-hide-dot-git-directory t)
  '(treemacs-max-git-entries 5000)
+
+ '(treemacs-error-list-expand-depth 2)
+ '(treemacs-error-list-current-project-only t)
 
  '(treemacs-tag-follow-cleanup t)
  '(treemacs-tag-follow-delay 0.5)
@@ -85,7 +88,7 @@
   ;; :hook (prog-mode . treemacs)
   :after lsp
   :config
-  (treemacs--setup-fringe-indicator-mode 'Always)
+  ;; (treemacs--setup-fringe-indicator-mode 'always)
   ;; ;; The default width and height of the icons is 22 pixels. If you are
   ;; ;; using a Hi-DPI display, uncomment this to double the icon size.
   ;; (treemacs-resize-icons 16)
@@ -99,7 +102,8 @@
 
 (use-package lsp-treemacs
   :after (lsp treemacs)
-  :commands (lsp-treemacs-symbols lsp-treemacs-errors-list))
+  ;; :commands (lsp-treemacs-symbols lsp-treemacs-errors-list)
+  )
 
 (use-package treemacs-magit
   :ensure t
@@ -109,6 +113,35 @@
   :ensure t
   ;; :defer t
   :after (treemacs projectile)
+  :init
+  (defun treemacs-start ()
+    (interactive)
+    (let* ((buffer (current-buffer))
+	   (window (and buffer (get-buffer-window buffer))))
+      (treemacs)
+      (lsp-treemacs-errors-list)
+      (lsp-treemacs-symbols)
+      (when window
+        (select-window window)))
+
+    ;; wait a bit while windows created
+    ;; to exclude it from other-window
+    (sleep-for 1)
+
+    ;; exclude lsp-treemacs error list and symbols
+    ;; from other-window command
+    (dolist (w (window-list))
+      (let ((buf-name (buffer-name (window-buffer w))))
+        (when (or
+	       (equal "*LSP Error List*" buf-name)
+	       (equal "*LSP Symbols List*" buf-name))
+	  (message "Setting no-other-window for %s" buf-name)
+          (set-window-parameter w 'no-delete-other-windows t)
+          (set-window-parameter w 'no-other-window t)))))
+  :config
+  (tool-bar-add-item "spell" 'treemacs-start
+                     'treemacs-start
+                     :help   "Launch treemacs")
   :bind
   (("C-c e" . #'treemacs)
    ("C-c E" . #'treemacs-projectile)))
