@@ -89,6 +89,7 @@
     yaml-mode                           ;+
     hcl-mode				;+
     toml				;+
+    toml-mode				;+
     ;; yasnippet
     yasnippet                           ;+
     yasnippet-snippets                  ;+
@@ -107,6 +108,10 @@
     jinja2-mode                         ;+
     conda                               ;+
     flycheck-pyflakes                   ;+
+    ;; golang
+    go-mode
+    ;; rust
+    rust-mode
     ;; treemacs-related packages
     treemacs                            ;+
     treemacs-all-the-icons              ;+

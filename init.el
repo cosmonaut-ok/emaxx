@@ -69,7 +69,7 @@ Also discard .elc without corresponding .el."
 ;; very early init
 ;;
 ;; Save any custom set variable in const/custom-file rather than at the end of init.el
-(setq custom-file const/custom-file)
+(setq custom-file (locate-user-emacs-file (expand-file-name const/custom-file)))
 
 ;; add directory with 3rd party packages to load-path
 (add-to-list 'load-path const/third-party-dir)
@@ -130,6 +130,8 @@ Also discard .elc without corresponding .el."
 (load-user-rc-file (file-name-concat "rc" "elisp"))
 (load-user-rc-file (file-name-concat "rc" "groovy"))
 (load-user-rc-file (file-name-concat "rc" "powershell"))
+(load-user-rc-file (file-name-concat "rc" "go"))
+(load-user-rc-file (file-name-concat "rc" "rust"))
 
 ;; tooling modes
 (load-user-rc-file (file-name-concat "rc" "yasnippet"))

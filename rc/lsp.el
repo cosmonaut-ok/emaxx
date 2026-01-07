@@ -48,8 +48,10 @@
   ;; semantic hilite via lsp server
   (lsp-semantic-tokens-enable t)
 
-  (lsp-idle-delay 0.1) ;; clangd is fast
-  (lsp-log-io t)
+  (lsp-idle-delay 0.2) ;; clangd is fast
+  (lsp-diagnostics-delay 0.5) ; Delay diagnostics by 0.5 seconds
+  (lsp-completion-delay 0.1)  ; Delay completion requests
+  (lsp-log-io nil)
   ;; --------------------------------------------------------------------------------
 
   :commands lsp)
@@ -67,24 +69,21 @@
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
   :commands lsp-ui-mode
   :custom
-  (lsp-ui-sideline-show-code-actions t)
+  (lsp-ui-sideline-enable t)
   (lsp-ui-sideline-delay 2)
-  (lsp-ui-peek-enable t)
+  (lsp-ui-sideline-show-code-actions t)
+  (lsp-ui-sideline-show-hover nil)
+
+  (lsp-ui-imenu-window-width 180)
+  (lsp-ui-imenu-auto-refresh t)
+
   (lsp-ui-doc-enable t)
   (lsp-ui-doc-delay 2)
   (lsp-ui-doc-show-with-mouse t)
-  (lsp-ui-imenu-window-width 180)
-  (lsp-ui-imenu-auto-refresh t)
-  ;; --------------------------------------------------------------------------------
-  (lsp-ui-doc-enable t)
   (lsp-ui-doc-use-childframe t)
   (lsp-ui-doc-show-with-cursor nil)
   (lsp-ui-doc-position 'at-point)
   (lsp-ui-doc-include-signature t)
-
-  (lsp-ui-sideline-enable t)
-  (lsp-ui-sideline-show-code-actions t)
-  (lsp-ui-sideline-show-hover nil)
 
   (lsp-ui-flycheck-enable t)
   (lsp-ui-flycheck-list-position 'bottom)
