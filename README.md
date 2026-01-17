@@ -32,6 +32,12 @@ This configuration created for my personal use and distributed `as is` under ter
 * `C-S-a` -- helm-projectile-ag
 * `C-S-r` -- helm-projectile-rg
 
+### Google Translate
+
+* `F12` -- translate from english to ukrainian at point
+* `S-F12` -- translate from ukrainian to english at point
+* `M-F12` -- interactive translate with from-to language selection
+
 ## Installation
 
 NOTE: tested only on **Debian GNU Linux 13** distributive.

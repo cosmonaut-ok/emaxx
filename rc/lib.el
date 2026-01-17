@@ -52,4 +52,15 @@
           ((file-readable-p expanded-file-elc) (load expanded-file-elc))
           ((file-readable-p expanded-file-el) (load expanded-file-el))
           (t (error "Can not load file %s" filename)))))
+
+(defun download-file (url download-path)
+  (let ((download-buffer (url-retrieve-synchronously url)))
+    (save-excursion
+      (set-buffer download-buffer)
+      ;; we may have to trim the http response
+      (goto-char (point-min))
+      (re-search-forward "^$" nil 'move)
+      (forward-char)
+      (delete-region (point-min) (point))
+      (write-file download-path))))
 ;;; lib.el ends here.

@@ -1,6 +1,8 @@
-;; This file is for loading emacs `package` packages,
+;;; 99-third-party-deps-loader.el --- 3rd party dependencies loader for Emaxx -*- lexical-binding: t -*-
+;;; Commentary:
+;; This file is for loading emacs 3rd party packages,
 ;; defined in `deps.el` declarative file
-
+;;; Code:
 (let ((emacs-user-deps (expand-file-name (locate-user-emacs-file "deps.el"))))
   (if (file-readable-p emacs-user-deps)
       (load emacs-user-deps)

@@ -50,7 +50,10 @@ mypy error code and BODY is a rst body of the code.")
 
 ;;; Basic configuration (as need for lsp and for shellcheck)
 (use-package flycheck
-  :functions (exodrium--flycheck-mypy-retrieve-error-codes)
+  :custom
+  (flycheck-indication-mode nil)
+  (flycheck-highlighting-mode 'lines)
+  :functions (emaxx--flycheck-mypy-retrieve-error-codes)
   :autoload (flycheck-add-next-checker
              flycheck-buffer-saved-p
              flycheck-call-checker-process
@@ -62,7 +65,7 @@ mypy error code and BODY is a rst body of the code.")
   (after-init . global-flycheck-mode)
   :init
   ;; A custom mypy checker, with error explanations
-  (defun exodrium--flycheck-mypy-retrieve-error-codes (mypy-version)
+  (defun emaxx--flycheck-mypy-retrieve-error-codes (mypy-version)
     (let* (error-codes-alist
            (error-headline "^[A-Z][a-z' ]+ \\[\\([a-z-]+\\)\\]
 -+"))
@@ -138,7 +141,7 @@ See URL `http://mypy-lang.org/'."
                    (emaxx-setf-when-nil
                     (alist-get (intern mypy-version)
                                emaxx--flycheck-mypy-error-codes-alist)
-                    (exodrium--flycheck-mypy-retrieve-error-codes
+                    (emaxx--flycheck-mypy-retrieve-error-codes
                      mypy-version)))
                   (explanation (alist-get (intern error-code)
                                           error-codes-alist)))

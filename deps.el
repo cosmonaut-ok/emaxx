@@ -21,7 +21,7 @@
                            )
   )
 
-(defconst const/pip-deps '("autotools-language-server" "python-lsp-server[all]" "ruff" "mypy"))
+(defconst const/pip-deps '("autotools-language-server" "python-lsp-server[all]" "ruff" "mypy" "ruff"))
 (defconst const/gem-deps '("ruby-lsp" "rubocop"))
 (defconst const/go-deps '("github.com/arduino/arduino-language-server@latest"))
 (defconst const/npm-deps '("vscode-langservers-extracted" "dockerfile-language-server-nodejs"
@@ -122,6 +122,9 @@
     lsp-ui                              ;+
     lsp-treemacs                        ;+
     lsp-latex                           ;- TODO: create configuration for LaTeX
+    ;; latex
+    auctex
+    biblio				; An extensible Emacs package for browsing and fetching references
     ;; various system modes
     systemd                             ;
     clang-format                        ;c/c++ language server+

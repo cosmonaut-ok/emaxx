@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(setenv "LSP_USE_PLISTS" "true")
+
 (use-package lsp-mode
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
@@ -39,6 +41,7 @@
 
   :custom
   ;; --------------------------------------------------------------------------------
+  (lsp-enable-links nil)
   (lsp-diagnostic-provider :flycheck)
   (lsp-flycheck-live-reporting t)
   ;; company mode configuration for lsp-mode
